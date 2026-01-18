@@ -1,4 +1,4 @@
-# Zeely Sidebar
+# Sidebar
 
 # React + TypeScript + Vite
 
