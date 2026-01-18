@@ -2,13 +2,13 @@ import { useState } from 'react'
 
 import actionButtonPrev from '@/assets/icons/action_back.svg'
 import actionButtonNext from '@/assets/icons/action_next.svg'
-import aiSVG from "@/assets/icons/AI.svg"
+import aiSVG from '@/assets/icons/AI.svg'
 import buttonAIIcon from '@/assets/icons/AI_button.svg'
-import { Button } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
+import { Button } from '@/components/ui/button'
+import { Textarea } from '@/components/ui/textarea'
+import { useTaskStore } from '@/store/taskStore'
 
 const testText = 'Animate glowing rays pulsating from behind the bottle, leaves gently swaying, and golden sparkles floating upward for a natural, radiant effect.';
-
 interface IconButtonProps {
   img: string
   onClick?: () => void
@@ -27,8 +27,10 @@ const IconButton = ({ img, onClick }: IconButtonProps) => {
 }
 
 export function GenerateBackgroundIdea() {
-  const [text, setText ] = useState('')
-  return(
+  const [text, setText] = useState('')
+  const addGeneratingTask = useTaskStore((state) => state.addGeneratingTask)
+
+  return (
     <div>
       <div className="relative mb-6">
         <Textarea
@@ -54,7 +56,16 @@ export function GenerateBackgroundIdea() {
           </div>
         </div>
       </div>
-      <Button className="w-full h-12 bg-black text-white !rounded-[100px] !font-semibold !text-sm !leading-[0.8] tracking-normal">
+      <Button
+        className="w-full h-12 bg-black text-white !rounded-[100px] !font-semibold !text-sm !leading-[0.8] tracking-normal"
+        onClick={() => addGeneratingTask({
+          id: Date.now().toString(),
+          state: 'generating' as const,
+          imageUrl: undefined,
+          progress: 0,
+          timeLeft: 180000,
+        })}
+      >
         <img src={buttonAIIcon} alt="buttonAIIcon" className="w-4 h-4" />
         Generate BG for 1 credit
       </Button>

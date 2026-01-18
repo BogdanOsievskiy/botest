@@ -1,8 +1,10 @@
-import type { IBackgroundsListProps } from '@/types/background'
+import { useTaskStore } from '@/store/taskStore'
 
 import { BackgroundCard } from './background-card'
 
-export function BackgroundsList({ tasks }: IBackgroundsListProps) {
+export function BackgroundsList() {
+  const tasks = useTaskStore((state) => state.tasks)
+
   return (
     <div className="flex flex-wrap gap-x-3 gap-y-3">
       {tasks.map((task) => (

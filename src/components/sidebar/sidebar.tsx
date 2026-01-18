@@ -8,7 +8,6 @@ import {
   SidebarHeader,
   useSidebar
 } from "@/components/ui/sidebar"
-import { sampleTasks } from '@/data/testData'
 
 import { BackgroundsList } from '../background-generator/backgrounds-list'
 
@@ -38,7 +37,7 @@ export function SideBar() {
           <SideBarCard>
             <SideBarCard.Title>Your backgrounds</SideBarCard.Title>
             <SideBarCard.Body>
-              <BackgroundsList tasks={sampleTasks} />
+              <BackgroundsList />
             </SideBarCard.Body>
           </SideBarCard>
 
